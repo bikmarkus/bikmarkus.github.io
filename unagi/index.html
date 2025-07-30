@@ -6,9 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta charset="utf-8">
 		<style>
-			.head-wrap{display:flex;align-items:center;justify-content:center;}
-			h1{display:block;text-align:center;font-family:Arial,sans-serif;margin:0.15em 0;}
-			#saveres{display:block;margin-left:1em;}
+			.head-wrap{display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;}
+			h1{display:block;text-align:center;margin:0.15em 0;}
+			.head-button{display: block;margin-left:1em;background: #f2f2f2; border: 1px solid #111; border-radius: 2px; color: #111; text-decoration: none; text-align: center; padding:5px; cursor: pointer; text-transform: uppercase; font-size:10px; letter-spacing:0.05em; } 
+			.bottom-disclaimer{ font-family:Arial,sans-serif; text-align: center; font-size: 0.25em; }
 			#updater{margin-left:1em;}
 			.tg{border-collapse:collapse;border-spacing:0;margin:0px auto;}
 			.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:0.5em;
@@ -42,7 +43,8 @@
     <body>
 		<div class="head-wrap">
 			<h1>Total Recall : 2025</h1>
-			<button id="saveres" onclick="capture()">Download</button>
+			<a id="saveres" class="head-button" onclick="capture()">Скачать</a>
+			<a class="head-button" href="https://vk.me/watcher37">Написать</a>
 		</div>
 		<div class="tg-wrap">
 			<table class="tg" id="vv-res">
@@ -4378,5 +4380,9 @@
 			  			</tbody>
 			</table>
 		</div>
+	    		<div class="bottom-disclaimer">
+				<p>О неточностях писать в <a href="https://vk.me/watcher37">личку ВК</a></p>
+				<p>Фото полной таблички с игры ускоряет обновление рейтинга &#128522;</p>
+			</div>
 		    </body>
 </html>
