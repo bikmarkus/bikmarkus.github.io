@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlowUpper</title>
+</head>
+<body>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Всплывающее окно</title>
+    <style>
+        /* Базовый стиль для фона всплывающего окна */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        /* Стиль самого окна */
+        .popup {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 80%;
+            max-height: 80vh;
+            overflow: auto;
+            text-align: center;
+        }
+
+        /* Изображение внутри окна */
+        .popup img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        /* Текст внутри окна (если не картинка) */
+        .popup .content-text {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        /* Кнопка закрытия */
+        .close-btn {
+            display: block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Активный класс для показа окна */
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <a href="https://sun9-56.userapi.com/s/v1/ig2/Lb1tQhyDWbV6VSYauGoLHO1LKkiTSxG7vI1AGHuCq0NV8QziXQs0zWcF7LqScrfHg4ZSoIWU5I7Y_d_YbWvcNrBq.jpg?quality=95&as=32x36,48x54,72x81,108x121,160x180,240x270,360x405,480x540,540x607,640x720,720x810,787x885&from=bu&cs=787x0"  class="popup-link">
+        172
+    </a>
+    
+    <!-- Контейнер всплывающего окна -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popupContent">
+            <!-- Сюда будет подгружаться контент -->
+            <button class="close-btn" id="closePopupBtn">Закрыть</button> 
+        </div>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>
