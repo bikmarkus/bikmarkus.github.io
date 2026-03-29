@@ -1,0 +1,2 @@
+let inputStr = "()";
+return true;
