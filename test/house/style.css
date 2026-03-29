@@ -1,1 +1,33 @@
-* {border : solid 1px black;}
+#house{
+    border : solid 1px black;
+    margin:5em auto;
+    min-height: 40em;
+    max-width: 80%;
+    width: 800px;
+}
+#roof{
+    min-height: 15em;
+    border-bottom : solid 1px black;
+}
+#wall{
+    min-height: 30em;
+}
+#basement{
+    min-height: 2em;
+    border-top : solid 1px black;
+}
+#stack{
+    border : solid 1px black;
+    height: 100px;
+    width: 20px;
+}
+#window{
+    border : solid 1px black;
+    height: 100px;
+    width: 100px;
+}
+#door{
+    border : solid 1px black;
+    height: 300px;
+    width: 200px;
+}
