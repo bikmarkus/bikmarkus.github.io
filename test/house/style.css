@@ -1,14 +1,15 @@
 #house{
-    border : solid 1px black;
     margin:5em auto;
     min-height: 40em;
     max-width: 80%;
     width: 800px;
 }
 #roof{
-    min-height: 15em;
-    border-bottom : solid 1px black;
-    background-color:lightslategray;
+    width:0;
+    height: 0;
+    border-left:solid 25em transparent;
+    border-right:solid 25em transparent;
+    border-bottom : solid 15em lightslategray;
 }
 #wall{
     padding-top:3em;
@@ -29,7 +30,7 @@
     width: 40px;
     position: relative;
     top: -50px;
-    left: 100px;
+    left: 60px;
     z-index: 1;
     background-color:dimgray;
 }
