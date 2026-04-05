@@ -2,15 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const quadrants = ['list-q1', 'list-q2', 'list-q3', 'list-q4'];
     let draggedItem = null;
 
-    // 1. Инициализация данных и Drop-зон
     quadrants.forEach(id => {
         const list = document.getElementById(id);
-        
-        // Загрузка
         const saved = JSON.parse(localStorage.getItem(id) || '[]');
         saved.forEach(task => renderTask(id, task.text, task.completed));
 
-        // Drag & Drop события для списка
         list.addEventListener('dragover', e => e.preventDefault());
         list.addEventListener('dragenter', () => list.classList.add('drag-over'));
         list.addEventListener('dragleave', () => list.classList.remove('drag-over'));
@@ -27,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Логика управления квадрантами
     document.querySelectorAll('.quadrant').forEach((quad, index) => {
         const input = quad.querySelector('input');
         const btn = quad.querySelector('.add-btn');
@@ -43,20 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Добавление кликом и Enter
         btn.onclick = handleAdd;
         input.onkeypress = (e) => { if (e.key === 'Enter') handleAdd(); };
 
-        // ПОЛНАЯ ОЧИСТКА КВАДРАТА
+        // Очистка без подтверждения
         clearBtn.onclick = () => {
-            if (confirm('Удалить ВСЕ задачи из этого списка?')) {
-                document.getElementById(listId).innerHTML = '';
-                saveData(listId);
-            }
+            document.getElementById(listId).innerHTML = '';
+            saveData(listId);
         };
     });
 
-    // 3. Создание элемента задачи
     function renderTask(listId, text, completed = false) {
         const list = document.getElementById(listId);
         const li = document.createElement('li');
@@ -69,19 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="delete-btn">×</button>
         `;
 
-        // Чекбокс
         li.querySelector('input').onchange = (e) => {
             li.classList.toggle('completed', e.target.checked);
             saveData(listId);
         };
 
-        // Удаление одной задачи
         li.querySelector('.delete-btn').onclick = () => {
             li.remove();
             saveData(listId);
         };
 
-        // Drag & Drop события для самой задачи
         li.ondragstart = () => {
             draggedItem = li;
             setTimeout(() => li.style.opacity = '0.5', 0);
@@ -94,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         list.appendChild(li);
     }
 
-    // 4. Сохранение в LocalStorage
     function saveData(listId) {
         const list = document.getElementById(listId);
         if(!list) return;

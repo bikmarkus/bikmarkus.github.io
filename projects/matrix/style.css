@@ -29,13 +29,13 @@ h1 {
 
 .matrix {
     display: grid;
-    grid-template-columns: 1fr; /* Мобильная версия по умолчанию */
+    grid-template-columns: 1fr;
     gap: 15px;
 }
 
 @media (min-width: 768px) {
     .matrix {
-        grid-template-columns: 1fr 1fr; /* Десктопная версия */
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -88,7 +88,7 @@ input[type="text"] {
     padding: 10px;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 8px;
-    font-size: 16px; /* Важно для iOS (отключает автозум) */
+    font-size: 16px;
 }
 
 .add-btn {
@@ -146,13 +146,11 @@ input[type="text"] {
     cursor: pointer;
 }
 
-/* Цвета */
 .q1 { background-color: var(--q1-color); }
 .q2 { background-color: var(--q2-color); }
 .q3 { background-color: var(--q3-color); }
 .q4 { background-color: var(--q4-color); }
 
-/* Подсветка при перетаскивании */
 .todo-list.drag-over {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
