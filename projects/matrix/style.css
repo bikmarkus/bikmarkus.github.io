@@ -22,20 +22,20 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #333;
+    margin: 20px 0;
 }
 
-/* Сетка: 1 колонка для мобилок, 2 для десктопа */
 .matrix {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Мобильная версия по умолчанию */
     gap: 15px;
 }
 
 @media (min-width: 768px) {
     .matrix {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Десктопная версия */
     }
 }
 
@@ -45,7 +45,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
-    min-height: 200px;
+    min-height: 250px;
 }
 
 .header-row {
@@ -57,9 +57,24 @@ h1 {
 
 .header-row h2 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    color: #444;
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    transition: transform 0.2s;
+}
+
+.clear-btn:hover {
+    transform: scale(1.2);
+    opacity: 1;
 }
 
 .input-group {
@@ -70,10 +85,10 @@ h1 {
 
 input[type="text"] {
     flex: 1;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 8px;
-    font-size: 16px; /* Предотвращает зум на iPhone */
+    font-size: 16px; /* Важно для iOS (отключает автозум) */
 }
 
 .add-btn {
@@ -90,9 +105,9 @@ input[type="text"] {
     list-style: none;
     padding: 0;
     margin: 0;
+    min-height: 100px;
 }
 
-/* Анимация и элементы списка */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
@@ -101,18 +116,19 @@ input[type="text"] {
 .todo-item {
     background: white;
     margin-bottom: 8px;
-    padding: 12px;
+    padding: 10px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 10px;
     animation: fadeIn 0.2s ease-out;
     cursor: grab;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .todo-item.completed span {
     text-decoration: line-through;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .todo-item span {
@@ -125,13 +141,19 @@ input[type="text"] {
     background: #ffeded;
     color: #ff4d4d;
     border: none;
-    padding: 5px 10px;
+    padding: 5px 8px;
     border-radius: 6px;
     cursor: pointer;
 }
 
-/* Цвета квадрантов */
+/* Цвета */
 .q1 { background-color: var(--q1-color); }
 .q2 { background-color: var(--q2-color); }
 .q3 { background-color: var(--q3-color); }
 .q4 { background-color: var(--q4-color); }
+
+/* Подсветка при перетаскивании */
+.todo-list.drag-over {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
