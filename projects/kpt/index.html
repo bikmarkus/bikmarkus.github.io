@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник мыслей КПТ</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --bg: #f4f7f6;
+            --accent: #3498db;
+            --danger: #e74c3c;
+            --border: #dee2e6;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: var(--primary);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 20px; }
+
+        /* Прокрутка для мобильных устройств */
+        .table-wrapper {
+            overflow-x: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            min-width: 900px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        td {
+            border: 1px solid var(--border);
+            padding: 10px;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        /* Строка с подсказками */
+        .guide-row {
+            background: #fdfdfd;
+            font-size: 12px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        /* Стили для ввода текста */
+        [contenteditable="true"] {
+            min-height: 60px;
+            outline: none;
+            padding: 5px;
+        }
+
+        [contenteditable="true"]:focus {
+            background: #fffdf0;
+        }
+
+        /* Кнопки */
+        .toolbar {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-add { background: var(--accent); color: white; }
+        .btn-clear { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+        button:hover { opacity: 0.8; }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Дневник мыслей (КПТ)</h1>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 100px;">Дата</th>
+                    <th>Ситуация</th>
+                    <th>Эмоция</th>
+                    <th>Автом. мысль</th>
+                    <th>Рац. реакция</th>
+                    <th>Результат</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr class="guide-row">
+                    <td>Число</td>
+                    <td>Что случилось?</td>
+                    <td>Чувства (0-100)</td>
+                    <td>Мысли в голове</td>
+                    <td>Другой взгляд</td>
+                    <td>Итог (0-100)</td>
+                </tr>
+                <!-- Сюда JS будет добавлять строки -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="toolbar">
+        <button class="btn-add" onclick="addRow()">+ Добавить строку</button>
+        <button class="btn-clear" onclick="clearData()">Очистить всё</button>
+    </div>
+</div>
+
+<script>
+    const tableBody = document.getElementById('tableBody');
+    const STORAGE_KEY = 'cbt_simple_diary';
+
+    // Создание строки
+    function addRow(values = ["", "", "", "", "", ""]) {
+        const tr = document.createElement('tr');
+        values.forEach(text => {
+            const td = document.createElement('td');
+            td.contentEditable = true;
+            td.innerText = text;
+            td.addEventListener('input', () => saveToLocal());
+            tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+    }
+
+    // Сохранение
+    function saveToLocal() {
+        const rows = Array.from(tableBody.querySelectorAll('tr:not(.guide-row)'));
+        const data = rows.map(row => 
+            Array.from(row.querySelectorAll('td')).map(td => td.innerText)
+        );
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    // Загрузка
+    function loadFromLocal() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const data = JSON.parse(saved);
+            if (data.length > 0) {
+                data.forEach(rowData => addRow(rowData));
+                return;
+            }
+        }
+        // Если данных нет, создаем две пустые строки
+        addRow(); addRow();
+    }
+
+    // Очистка
+    function clearData() {
+        if (confirm('Удалить все данные из таблицы?')) {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+        }
+    }
+
+    window.onload = loadFromLocal;
+</script>
+
+</body>
+</html>
