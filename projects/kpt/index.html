@@ -7,35 +7,35 @@
     <style>
         :root {
             --primary: #2c3e50;
-            --bg: #f4f7f6;
+            --bg: #f8f9fa;
             --accent: #3498db;
             --danger: #e74c3c;
             --border: #dee2e6;
+            --hint-color: #8e959c;
         }
 
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background-color: var(--bg);
             margin: 0;
             padding: 20px;
             color: var(--primary);
         }
 
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1300px; margin: 0 auto; }
 
         .header { text-align: center; margin-bottom: 20px; }
 
-        /* Прокрутка для мобильных устройств */
         .table-wrapper {
             overflow-x: auto;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         table {
             width: 100%;
-            min-width: 900px;
+            min-width: 1100px;
             border-collapse: collapse;
             table-layout: fixed;
         }
@@ -43,9 +43,10 @@
         th {
             background: var(--primary);
             color: white;
-            padding: 12px;
+            padding: 12px 10px;
             font-size: 13px;
             text-align: left;
+            border: 1px solid #34495e;
         }
 
         td {
@@ -53,51 +54,61 @@
             padding: 10px;
             vertical-align: top;
             word-wrap: break-word;
+            font-size: 14px;
         }
 
-        /* Строка с подсказками */
-        .guide-row {
+        /* Стили для малозаметных пояснений */
+        .guide-row td {
             background: #fdfdfd;
-            font-size: 12px;
-            color: #7f8c8d;
+            font-size: 11px;
+            color: var(--hint-color);
+            line-height: 1.3;
             font-style: italic;
+            pointer-events: none; /* Чтобы нельзя было случайно нажать */
         }
 
-        /* Стили для ввода текста */
+        .guide-row span {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Интерактивные ячейки */
         [contenteditable="true"] {
-            min-height: 60px;
+            min-height: 80px;
             outline: none;
             padding: 5px;
+            transition: background 0.2s;
         }
 
         [contenteditable="true"]:focus {
-            background: #fffdf0;
+            background: #fffef2;
+            box-shadow: inset 0 0 0 1px var(--accent);
         }
 
-        /* Кнопки */
         .toolbar {
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 10px 22px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            transition: opacity 0.2s;
+            font-size: 14px;
+            transition: all 0.2s;
         }
 
         .btn-add { background: var(--accent); color: white; }
         .btn-clear { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
-        button:hover { opacity: 0.8; }
+        button:hover { opacity: 0.85; transform: translateY(-1px); }
 
         @media (max-width: 600px) {
             body { padding: 10px; }
-            h1 { font-size: 1.2rem; }
+            h1 { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -112,24 +123,42 @@
         <table>
             <thead>
                 <tr>
-                    <th style="width: 100px;">Дата</th>
+                    <th style="width: 85px;">Дата</th>
                     <th>Ситуация</th>
-                    <th>Эмоция</th>
-                    <th>Автом. мысль</th>
-                    <th>Рац. реакция</th>
+                    <th>Эмоция (-ии)</th>
+                    <th>Автоматическая мысль (-ли)</th>
+                    <th>Рациональная реакция</th>
                     <th>Результат</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
+                <!-- Строка пояснений (Строка 2 и 3 из оригинала) -->
                 <tr class="guide-row">
-                    <td>Число</td>
-                    <td>Что случилось?</td>
-                    <td>Чувства (0-100)</td>
-                    <td>Мысли в голове</td>
-                    <td>Другой взгляд</td>
-                    <td>Итог (0-100)</td>
+                    <td>
+                        <span>Число</span>
+                    </td>
+                    <td>
+                        <span>1. Опишите: Актуальное событие, ведущее к неприятной эмоции, или</span>
+                        <span>2. Поток мыслей, фантазию или воспоминание, ведущих к неприятной эмоции</span>
+                    </td>
+                    <td>
+                        <span>1. Конкретизируйте: печаль, тревогу, злость, двойственность, конфликтность и т. д.</span>
+                        <span>2. Оцените интенсивность эмоции, 1 — 100</span>
+                    </td>
+                    <td>
+                        <span>1. Выпишите автоматические мысли, предшествовавшие эмоции (-иям)</span>
+                        <span>2. Оцените убежденность в своих автоматических мыслях, 1 — 100</span>
+                    </td>
+                    <td>
+                        <span>1. Запишите рациональный ответ на автоматические мысли</span>
+                        <span>2. Оцените убежденность в рациональной реакции, 1 — 100</span>
+                    </td>
+                    <td>
+                        <span>1. Дайте новую оценку убежденности в своих автоматических мыслях, 1 — 100</span>
+                        <span>2. Конкретизируйте и оцените последовавшие эмоции, 1 — 100</span>
+                    </td>
                 </tr>
-                <!-- Сюда JS будет добавлять строки -->
+                <!-- Здесь будут строки пользователя -->
             </tbody>
         </table>
     </div>
@@ -142,22 +171,20 @@
 
 <script>
     const tableBody = document.getElementById('tableBody');
-    const STORAGE_KEY = 'cbt_simple_diary';
+    const STORAGE_KEY = 'cbt_full_diary_v1';
 
-    // Создание строки
     function addRow(values = ["", "", "", "", "", ""]) {
         const tr = document.createElement('tr');
         values.forEach(text => {
             const td = document.createElement('td');
             td.contentEditable = true;
             td.innerText = text;
-            td.addEventListener('input', () => saveToLocal());
+            td.addEventListener('input', saveToLocal);
             tr.appendChild(td);
         });
         tableBody.appendChild(tr);
     }
 
-    // Сохранение
     function saveToLocal() {
         const rows = Array.from(tableBody.querySelectorAll('tr:not(.guide-row)'));
         const data = rows.map(row => 
@@ -166,7 +193,6 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
 
-    // Загрузка
     function loadFromLocal() {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
@@ -176,13 +202,11 @@
                 return;
             }
         }
-        // Если данных нет, создаем две пустые строки
-        addRow(); addRow();
+        addRow(); // Одна пустая строка при первом запуске
     }
 
-    // Очистка
     function clearData() {
-        if (confirm('Удалить все данные из таблицы?')) {
+        if (confirm('Вы уверены, что хотите полностью очистить дневник?')) {
             localStorage.removeItem(STORAGE_KEY);
             location.reload();
         }
