@@ -1,4 +1,4 @@
-let habits = JSON.parse(localStorage.getItem('habits_v2')) || [];
+let habits = JSON.parse(localStorage.getItem('habits_v3')) || [];
 let daysCount = parseInt(localStorage.getItem('days_count')) || 5;
 
 // Добавление по Enter
@@ -10,7 +10,7 @@ function getDates() {
     const dates = [];
     for (let i = 0; i < daysCount; i++) {
         const d = new Date();
-        d.setDate(d.getDate() + i); // Начинаем с сегодня и идем вперед
+        d.setDate(d.getDate() + i);
         dates.push(d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' }));
     }
     return dates;
@@ -33,27 +33,28 @@ function render() {
                 <td>
                     <input type="checkbox" 
                         ${habit.history?.[date] ? 'checked' : ''} 
-                        onclick="toggle(${hIdx}, '${date}')">
+                        onchange="toggle(${hIdx}, '${date}')">
                 </td>
             `).join('')}
         </tr>
     `).join('');
 
-    localStorage.setItem('habits_v2', JSON.stringify(habits));
+    localStorage.setItem('habits_v3', JSON.stringify(habits));
     localStorage.setItem('days_count', daysCount);
 }
 
 function addHabit() {
     const input = document.getElementById('habitInput');
-    if (input.value.trim()) {
-        habits.push({ name: input.value.trim(), history: {} });
+    const name = input.value.trim();
+    if (name) {
+        habits.push({ name: name, history: {} });
         input.value = '';
         render();
     }
 }
 
 function removeHabit(index) {
-    if (confirm('Удалить привычку?')) {
+    if (confirm('Удалить эту привычку?')) {
         habits.splice(index, 1);
         render();
     }
@@ -62,7 +63,7 @@ function removeHabit(index) {
 function toggle(hIdx, date) {
     if (!habits[hIdx].history) habits[hIdx].history = {};
     habits[hIdx].history[date] = !habits[hIdx].history[date];
-    render();
+    localStorage.setItem('habits_v3', JSON.stringify(habits));
 }
 
 function changeDays(val) {

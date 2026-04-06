@@ -1,12 +1,96 @@
-body { font-family: sans-serif; background: #f8f9fa; display: flex; justify-content: center; padding: 40px; }
-.container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 800px; }
-.controls, .table-actions { display: flex; gap: 10px; margin-bottom: 20px; }
-input { flex: 1; padding: 10px; border: 2px solid #eee; border-radius: 6px; outline: none; }
-input:focus { border-color: #007bff; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: 12px; border: 1px solid #f0f0f0; text-align: center; }
-.habit-name-cell { text-align: left; display: flex; justify-content: space-between; align-items: center; min-width: 150px; }
-.delete-btn { color: #ff4d4d; cursor: pointer; border: none; background: none; font-size: 18px; }
-.secondary { background: #6c757d; font-size: 12px; padding: 5px 10px; }
-button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
-button:hover { opacity: 0.9; }
+* { box-sizing: border-box; }
+body { 
+    font-family: -apple-system, system-ui, sans-serif; 
+    background: #f0f2f5; 
+    margin: 0; 
+    padding: 20px; 
+    display: flex; 
+    justify-content: center; 
+}
+
+.container { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    /* Контейнер растет вместе с контентом */
+    width: fit-content; 
+    max-width: 95vw; 
+}
+
+.controls, .table-actions { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 15px; 
+}
+
+input { 
+    flex: 1; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    font-size: 16px; 
+}
+
+.table-wrapper { 
+    overflow-x: auto; 
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+table { 
+    border-collapse: collapse; 
+    white-space: nowrap; 
+}
+
+th, td { 
+    padding: 12px 15px; 
+    border-bottom: 1px solid #eee; 
+    text-align: center; 
+}
+
+/* Закрепляем первый столбец */
+th:first-child, .habit-name-cell { 
+    position: sticky; 
+    left: 0; 
+    background: white; 
+    z-index: 2; 
+    text-align: left;
+    border-right: 2px solid #f0f0f0;
+}
+
+th { background: #fafafa; color: #666; font-size: 13px; }
+
+.habit-name-cell { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    min-width: 180px; 
+}
+
+.delete-btn { 
+    color: #ff4d4d; 
+    border: none; 
+    background: none; 
+    font-size: 20px; 
+    cursor: pointer; 
+    margin-left: 10px;
+}
+
+button { 
+    cursor: pointer; 
+    background: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 15px; 
+    font-weight: bold; 
+}
+
+.secondary { background: #6c757d; font-size: 12px; }
+
+input[type="checkbox"] { 
+    width: 18px; 
+    height: 18px; 
+    cursor: pointer; 
+}
