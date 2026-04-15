@@ -1,96 +1,36 @@
-* { box-sizing: border-box; }
-body { 
-    font-family: -apple-system, system-ui, sans-serif; 
-    background: #f0f2f5; 
-    margin: 0; 
-    padding: 20px; 
-    display: flex; 
-    justify-content: center; 
-}
+* { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+body { background: #f0f2f5; margin: 0; padding: 20px; color: #333; }
 
-.container { 
-    background: white; 
-    padding: 20px; 
-    border-radius: 16px; 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    /* Контейнер растет вместе с контентом */
-    width: fit-content; 
-    max-width: 95vw; 
-}
+.container { max-width: 900px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+h1 { text-align: center; margin-top: 0; }
 
-.controls, .table-actions { 
-    display: flex; 
-    gap: 10px; 
-    margin-bottom: 15px; 
-}
+.controls { display: flex; gap: 10px; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 10px; }
+input { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+#habit-input { flex: 1; min-width: 150px; }
+#days-input { width: 70px; }
 
-input { 
-    flex: 1; 
-    padding: 12px; 
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    font-size: 16px; 
-}
+.habit-item { border: 1px solid #eee; border-radius: 10px; padding: 15px; margin-bottom: 15px; background: #fff; }
+.habit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; gap: 10px; }
 
-.table-wrapper { 
-    overflow-x: auto; 
-    border-radius: 8px;
-    border: 1px solid #eee;
-}
+.habit-name { font-weight: 600; font-size: 1.1em; outline: none; flex: 1; padding: 5px; }
+.habit-name:focus { background: #f0f7ff; border-radius: 4px; }
 
-table { 
-    border-collapse: collapse; 
-    white-space: nowrap; 
-}
+.days-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.day-box { display: flex; flex-direction: column; align-items: center; background: #f9f9f9; padding: 8px; border-radius: 6px; min-width: 55px; border: 1px solid #f0f0f0; }
+.day-date { font-size: 11px; color: #777; margin-bottom: 5px; }
 
-th, td { 
-    padding: 12px 15px; 
-    border-bottom: 1px solid #eee; 
-    text-align: center; 
-}
+input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: #28a745; }
 
-/* Закрепляем первый столбец */
-th:first-child, .habit-name-cell { 
-    position: sticky; 
-    left: 0; 
-    background: white; 
-    z-index: 2; 
-    text-align: left;
-    border-right: 2px solid #f0f0f0;
-}
+.actions { display: flex; gap: 5px; }
+button { cursor: pointer; border: none; border-radius: 6px; font-weight: bold; transition: 0.2s; }
 
-th { background: #fafafa; color: #666; font-size: 13px; }
+.btn-add { background: #007bff; color: white; padding: 10px 20px; }
+.btn-add:hover { background: #0056b3; }
 
-.habit-name-cell { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    min-width: 180px; 
-}
+.btn-adjust { background: #e9ecef; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+.btn-adjust:hover { background: #dee2e6; }
 
-.delete-btn { 
-    color: #ff4d4d; 
-    border: none; 
-    background: none; 
-    font-size: 20px; 
-    cursor: pointer; 
-    margin-left: 10px;
-}
+.btn-delete { background: #fff0f0; color: #dc3545; width: 30px; height: 30px; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+.btn-delete:hover { background: #dc3545; color: white; }
 
-button { 
-    cursor: pointer; 
-    background: #007bff; 
-    color: white; 
-    border: none; 
-    border-radius: 8px; 
-    padding: 10px 15px; 
-    font-weight: bold; 
-}
-
-.secondary { background: #6c757d; font-size: 12px; }
-
-input[type="checkbox"] { 
-    width: 18px; 
-    height: 18px; 
-    cursor: pointer; 
-}
+@media (max-width: 500px) { .controls { flex-direction: column; } }

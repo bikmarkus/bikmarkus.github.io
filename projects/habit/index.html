@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Адаптивный Трекер</title>
+    <title>Habit Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Трекер привычек</h2>
-        <div class="controls">
-            <input type="text" id="habitInput" placeholder="Новая привычка...">
-            <button onclick="addHabit()">Добавить</button>
-        </div>
-        <div class="table-actions">
-            <button class="secondary" onclick="changeDays(-1)">- День</button>
-            <button class="secondary" onclick="changeDays(1)">+ День</button>
-        </div>
-        <div class="table-wrapper">
-            <table id="habitTable">
-                <thead><tr id="headerRow"></tr></thead>
-                <tbody id="habitBody"></tbody>
-            </table>
-        </div>
+        <h1>Трекер привычек</h1>
+        
+        <form id="habit-form" class="controls">
+            <input type="text" id="habit-input" placeholder="Название привычки" required>
+            <input type="number" id="days-input" value="7" min="1" title="Количество дней">
+            <button type="submit" class="btn-add">Добавить</button>
+        </form>
+
+        <div id="habit-list" class="habit-list"></div>
     </div>
     <script src="script.js"></script>
 </body>

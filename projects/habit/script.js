@@ -1,74 +1,104 @@
-let habits = JSON.parse(localStorage.getItem('habits_v3')) || [];
-let daysCount = parseInt(localStorage.getItem('days_count')) || 5;
+const habitForm = document.getElementById('habit-form');
+const habitList = document.getElementById('habit-list');
 
-// Добавление по Enter
-document.getElementById('habitInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addHabit();
-});
+let habits = JSON.parse(localStorage.getItem('habitsData')) || [];
 
-function getDates() {
-    const dates = [];
-    for (let i = 0; i < daysCount; i++) {
-        const d = new Date();
-        d.setDate(d.getDate() + i);
-        dates.push(d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' }));
-    }
-    return dates;
+function save() {
+    localStorage.setItem('habitsData', JSON.stringify(habits));
+}
+
+function getFormattedDate(daysOffset) {
+    const date = new Date();
+    date.setDate(date.getDate() + daysOffset);
+    return date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' });
 }
 
 function render() {
-    const dates = getDates();
-    const header = document.getElementById('headerRow');
-    const body = document.getElementById('habitBody');
+    habitList.innerHTML = '';
 
-    header.innerHTML = '<th>Привычка</th>' + dates.map(d => `<th>${d}</th>`).join('');
+    habits.forEach((habit, hIdx) => {
+        const habitItem = document.createElement('div');
+        habitItem.className = 'habit-item';
 
-    body.innerHTML = habits.map((habit, hIdx) => `
-        <tr>
-            <td class="habit-name-cell">
-                <span>${habit.name}</span>
-                <button class="delete-btn" onclick="removeHabit(${hIdx})">&times;</button>
-            </td>
-            ${dates.map(date => `
-                <td>
-                    <input type="checkbox" 
-                        ${habit.history?.[date] ? 'checked' : ''} 
-                        onchange="toggle(${hIdx}, '${date}')">
-                </td>
-            `).join('')}
-        </tr>
-    `).join('');
+        const header = document.createElement('div');
+        header.className = 'habit-header';
 
-    localStorage.setItem('habits_v3', JSON.stringify(habits));
-    localStorage.setItem('days_count', daysCount);
+        const nameLabel = document.createElement('div');
+        nameLabel.className = 'habit-name';
+        nameLabel.contentEditable = true;
+        nameLabel.innerText = habit.name;
+        nameLabel.onblur = () => { habit.name = nameLabel.innerText; save(); };
+
+        const actions = document.createElement('div');
+        actions.className = 'actions';
+
+        const btnMinus = createBtn('-', () => { if(habit.days > 1) { habit.days--; save(); render(); } }, 'btn-adjust');
+        const btnPlus = createBtn('+', () => { habit.days++; save(); render(); }, 'btn-adjust');
+        // Удаление без подтверждения
+        const btnDel = createBtn('×', () => {
+            habits.splice(hIdx, 1);
+            save();
+            render();
+        }, 'btn-delete');
+
+        actions.append(btnMinus, btnPlus, btnDel);
+        header.append(nameLabel, actions);
+
+        const daysGrid = document.createElement('div');
+        daysGrid.className = 'days-grid';
+
+        for (let i = 0; i < habit.days; i++) {
+            const dayBox = document.createElement('div');
+            dayBox.className = 'day-box';
+
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'day-date';
+            dateSpan.innerText = getFormattedDate(i);
+
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = (habit.completed || []).includes(i);
+            cb.onclick = () => {
+                if (!habit.completed) habit.completed = [];
+                if (cb.checked) {
+                    habit.completed.push(i);
+                } else {
+                    habit.completed = habit.completed.filter(d => d !== i);
+                }
+                save();
+            };
+
+            dayBox.append(dateSpan, cb);
+            daysGrid.appendChild(dayBox);
+        }
+
+        habitItem.append(header, daysGrid);
+        habitList.appendChild(habitItem);
+    });
 }
 
-function addHabit() {
-    const input = document.getElementById('habitInput');
-    const name = input.value.trim();
-    if (name) {
-        habits.push({ name: name, history: {} });
-        input.value = '';
-        render();
-    }
+function createBtn(text, onclick, className) {
+    const btn = document.createElement('button');
+    btn.innerText = text;
+    btn.className = className;
+    btn.onclick = (e) => { e.preventDefault(); onclick(); };
+    return btn;
 }
 
-function removeHabit(index) {
-    if (confirm('Удалить эту привычку?')) {
-        habits.splice(index, 1);
-        render();
-    }
-}
+habitForm.onsubmit = (e) => {
+    e.preventDefault();
+    const nameInput = document.getElementById('habit-input');
+    const daysInput = document.getElementById('days-input');
 
-function toggle(hIdx, date) {
-    if (!habits[hIdx].history) habits[hIdx].history = {};
-    habits[hIdx].history[date] = !habits[hIdx].history[date];
-    localStorage.setItem('habits_v3', JSON.stringify(habits));
-}
+    habits.push({
+        name: nameInput.value,
+        days: parseInt(daysInput.value) || 7,
+        completed: []
+    });
 
-function changeDays(val) {
-    daysCount = Math.max(1, Math.min(14, daysCount + val));
+    nameInput.value = '';
+    save();
     render();
-}
+};
 
 render();
