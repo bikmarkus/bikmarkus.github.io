@@ -11,8 +11,10 @@
         <h1>Трекер привычек</h1>
         
         <form id="habit-form" class="controls">
-            <input type="text" id="habit-input" placeholder="Название привычки" required>
+            <input type="text" id="habit-input" placeholder="Привычка" required>
             <input type="number" id="days-input" value="7" min="1" title="Количество дней">
+            <!-- Используем text с паттерном для формата ДД.ММ.ГГГГ -->
+            <input type="text" id="date-input" placeholder="ДД.ММ.ГГГГ" title="Дата начала">
             <button type="submit" class="btn-add">Добавить</button>
         </form>
 
