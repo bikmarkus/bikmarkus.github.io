@@ -1,50 +1,125 @@
 * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-body { background: #f0f2f5; margin: 0; padding: 20px; }
+body { background: #f0f2f5; margin: 0; padding: 20px; color: #333; }
 
-.container { max-width: 900px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    background: white; 
+    padding: 25px; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+}
+
 h1 { text-align: center; margin-top: 0; }
 
-.controls { display: flex; gap: 10px; margin-bottom: 30px; background: #f8f9fa; padding: 15px; border-radius: 10px; flex-wrap: wrap; }
-input { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
-#habit-input { flex: 2; min-width: 150px; }
+.controls { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 30px; 
+    background: #f8f9fa; 
+    padding: 15px; 
+    border-radius: 10px; 
+    flex-wrap: wrap; 
+}
+
+input { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; }
+#habit-input { flex: 2; min-width: 180px; }
 #days-input { width: 70px; }
-#date-input { width: 120px; }
+#date-input { width: 150px; cursor: pointer; }
 
-.habit-item { border: 1px solid #eee; border-radius: 10px; padding: 15px; margin-bottom: 15px; }
-.habit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; gap: 10px; }
+.habit-item { 
+    border: 1px solid #eee; 
+    border-radius: 12px; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    background: #fff;
+}
 
-.habit-name { font-weight: 600; font-size: 1.1em; outline: none; flex: 1; }
-.habit-name:focus { background: #f0f7ff; }
+.habit-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    gap: 15px;
+}
 
-/* Сетка с центрированием и равномерными отступами */
+.habit-name { 
+    font-weight: 600; 
+    font-size: 1.1em; 
+    outline: none; 
+    flex: 1; 
+    padding: 4px;
+}
+
+.habit-name:focus { 
+    background: #f0f7ff; 
+    border-radius: 4px; 
+}
+
+/* Сетка с равными отступами и центрированием */
 .days-grid { 
     display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); 
-    gap: 10px; 
-    justify-content: center; 
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); 
+    gap: 12px; 
+    width: 100%;
 }
 
 .day-box { 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    background: #f9f9f9; 
-    padding: 8px; 
-    border-radius: 6px; 
+    background: #fdfdfd; 
+    padding: 10px 5px; 
+    border-radius: 8px; 
     border: 1px solid #f0f0f0; 
 }
 
-.day-date { font-size: 11px; color: #777; margin-bottom: 5px; }
+.day-date { font-size: 11px; color: #888; margin-bottom: 6px; font-weight: 500; }
 
-input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: #28a745; margin: 0; }
+input[type="checkbox"] { 
+    width: 22px; 
+    height: 22px; 
+    cursor: pointer; 
+    accent-color: #28a745; 
+    margin: 0;
+}
 
-.actions { display: flex; gap: 5px; }
-button { cursor: pointer; border: none; border-radius: 6px; font-weight: bold; }
+.actions { display: flex; gap: 6px; }
+
+button { 
+    cursor: pointer; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    transition: background 0.2s; 
+}
+
 .btn-add { background: #007bff; color: white; padding: 10px 20px; }
-.btn-adjust { background: #e9ecef; width: 30px; height: 30px; }
-.btn-delete { background: #fff0f0; color: #dc3545; width: 30px; height: 30px; font-size: 20px; }
+.btn-add:hover { background: #0056b3; }
 
-@media (max-width: 500px) {
+.btn-adjust { 
+    background: #f0f0f0; 
+    width: 32px; 
+    height: 32px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.btn-adjust:hover { background: #e2e2e2; }
+
+.btn-delete { 
+    background: #fff0f0; 
+    color: #dc3545; 
+    width: 32px; 
+    height: 32px; 
+    font-size: 22px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.btn-delete:hover { background: #dc3545; color: white; }
+
+@media (max-width: 600px) {
     .controls { flex-direction: column; }
     #habit-input, #days-input, #date-input { width: 100%; }
 }
