@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Todo List in the World. Tribute.</title>
+    <title>Pro Focus Todo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Focus<span>.</span></h1>
-            <p>Precise workspace for your daily goals</p>
+            <div class="header-top">
+                <div class="brand">
+                    <h1>Focus<span>.</span></h1>
+                </div>
+                <div class="stats-header">
+                    <span class="stat-pending"><span id="pendingCount">0</span> on the way</span>
+                    <span class="stat-done"><span id="doneCount">0</span> completed</span>
+                </div>
+                <button id="clearAllBtn" class="secondary-btn">Clear All</button>
+            </div>
         </header>
         
         <div class="input-section">
             <div class="input-group">
-                <input type="text" id="todoInput" placeholder="What's your next move?">
-                <div class="actions">
-                    <button id="addBtn" class="primary-btn">Add Task</button>
-                    <button id="clearAllBtn" class="secondary-btn">Clear All</button>
-                </div>
+                <input type="text" id="todoInput" placeholder="Press Enter to add task...">
             </div>
         </div>
 
         <ul id="todoList"></ul>
-
-        <div class="stats-footer">
-            <div class="stats-right">
-                <span class="stat-pending"><span id="pendingCount">0</span> on the way</span>
-                <span class="stat-done"><span id="doneCount">0</span> completed</span>
-            </div>
-        </div>
     </div>
     <script src="script.js"></script>
 </body>

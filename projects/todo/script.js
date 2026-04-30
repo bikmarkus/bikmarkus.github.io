@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('todoInput');
-    const addBtn = document.getElementById('addBtn');
     const todoList = document.getElementById('todoList');
     const clearAllBtn = document.getElementById('clearAllBtn');
     const doneCountEl = document.getElementById('doneCount');
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="checkbox" ${task.completed ? 'checked' : ''}>
                 <span>${task.text}</span>
                 <button class="delete-btn" title="Delete task">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             `;
 
@@ -92,9 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    addBtn.addEventListener('click', addTask);
     input.addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
-    clearAllBtn.addEventListener('click', () => { tasks = []; saveToStorage(); render(); });
+    clearAllBtn.addEventListener('click', () => {
+        tasks = [];
+        saveToStorage();
+        render();
+    });
 
     render();
 });

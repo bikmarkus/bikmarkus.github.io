@@ -23,55 +23,76 @@ body {
 
 .container {
     width: 100%;
-    max-width: 810px;
+    max-width: 640px;
     background: var(--bg-container);
     padding: 2.5rem;
     border-radius: 12px;
     border: 2px solid var(--border);
 }
 
+/* Центрирование хедера */
+.header-top { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.brand { display: flex; align-items: baseline; }
 h1 { font-size: 1.8rem; margin: 0; font-weight: 800; letter-spacing: -1px; }
 h1 span { color: var(--accent); }
 
-header p { font-size: 0.85rem; color: var(--text-muted); margin: 2px 0 1.5rem 0; }
+.stats-header {
+    flex: 2; /* Позволяет блоку занимать центральную часть */
+    display: flex;
+    justify-content: center; /* Центрирует счетчики */
+    gap: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.secondary-btn { 
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Прижимает кнопку вправо внутри флекса */
+    background: var(--danger); 
+    color: white;
+    max-width: fit-content;
+}
+
+.stat-done { color: var(--accent); }
+.stat-pending { color: var(--text-main); }
 
 .input-section {
     background: #fff;
-    padding: 1.5rem;
+    padding: 1.2rem;
     border-radius: 10px;
     border: 2px solid var(--border);
-    margin-bottom: 1.5rem;
+    margin:1.5rem 0;
 }
-
-.input-group { display: flex; flex-direction: column; gap: 15px; }
 
 input[type="text"] {
     width: 100%;
     background: transparent;
     border: none;
     border-bottom: 2px solid var(--border);
-    padding: 14px 8px;
+    padding: 10px 8px;
     font-size: 1rem;
     color: var(--text-main);
-    font-family: inherit;
 }
 
 input[type="text"]:focus { border-color: var(--accent); outline: none; }
 
-.actions { display: flex; gap: 10px; }
-
 button {
     font-family: inherit;
-    padding: 10px 18px;
+    padding: 8px 14px;
     border-radius: 6px;
     border: none;
     cursor: pointer;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
 }
-
-.primary-btn { background: var(--accent); color: white; }
-.secondary-btn { background: var(--danger); color: white; }
 
 ul { list-style: none; padding: 0; margin: 0; }
 
@@ -82,26 +103,21 @@ li {
     border-radius: 8px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Распределяем элементы */
     border: 2px solid var(--border);
     cursor: grab;
 }
 
-li.dragging { opacity: 0.4; border-style: dashed; }
-
-/* Текст занимает всё место между чекбоксом и крестиком */
 li span { 
     flex-grow: 1; 
     font-size: 0.95rem; 
     margin: 0 15px; 
     text-align: left;
-    transition: all 0.3s ease; 
 }
 
 input[type="checkbox"], .delete-btn {
     width: 22px; 
     height: 22px;
-    flex-shrink: 0; /* Чтобы не сжимались */
+    flex-shrink: 0;
 }
 
 input[type="checkbox"] {
@@ -135,32 +151,23 @@ input[type="checkbox"]:checked::after {
     align-items: center;
     justify-content: center;
     padding: 0;
+    margin-left: auto; /* Гарантирует прижатие вправо */
 }
 
-.delete-btn svg { width: 18px; height: 18px; stroke-width: 2.5px; }
+.delete-btn svg { 
+    width: 18px; 
+    height: 18px; 
+    stroke: currentColor; /* Использует цвет текста (text-muted) */
+    stroke-width: 2.5px; 
+}
+
 .delete-btn:hover { color: var(--danger); }
 
 .completed { opacity: 0.4; }
-.completed span { text-decoration: line-through; color: var(--text-muted); }
+.completed span { text-decoration: line-through; }
 
-.stats-footer {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
+@media (max-width: 600px) { 
+    .header-top { flex-direction: column; gap: 10px; }
+    .stats-header { order: 2; }
+    .secondary-btn { order: 3; width: 100%; justify-content: center; }
 }
-
-.stats-right {
-    display: flex;
-    gap: 25px;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-}
-
-.stat-done { color: var(--accent); }
-.stat-pending { color: var(--text-main); }
-
-#doneCount, #pendingCount { font-size: 1.1rem; }
