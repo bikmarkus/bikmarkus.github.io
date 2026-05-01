@@ -1,5 +1,5 @@
 :root {
-    --bg-body: #f4f7f6;
+    --bg-body: #e2e8e7;
     --bg-container: #ffffff;
     --text-main: #1b2624;
     --text-muted: #8e9a97;
@@ -28,48 +28,52 @@ body {
     padding: 2.5rem;
     border-radius: 12px;
     border: 2px solid var(--border);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
 }
 
-/* Центрирование хедера */
 .header-top { 
     display: flex; 
     align-items: center; 
     justify-content: space-between;
+    margin-bottom: 2rem;
 }
 
-.brand { display: flex; align-items: baseline; }
-h1 { font-size: 1.8rem; margin: 0; font-weight: 800; letter-spacing: -1px; }
-h1 span { color: var(--accent); }
-
-.stats-header {
-    flex: 2; /* Позволяет блоку занимать центральную часть */
-    display: flex;
-    justify-content: center; /* Центрирует счетчики */
-    gap: 15px;
+.brand, .actions-header { flex: 1; }
+.stats-header { 
+    flex: 4; 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
     font-weight: 800;
     text-transform: uppercase;
     font-size: 0.7rem;
     letter-spacing: 0.5px;
 }
 
-.secondary-btn { 
-    flex: 1;
-    display: flex;
-    justify-content: flex-end; /* Прижимает кнопку вправо внутри флекса */
-    background: var(--danger); 
-    color: white;
-    max-width: fit-content;
-}
+.actions-header { display: flex; justify-content: flex-end; }
+
+h1 { font-size: 1.8rem; margin: 0; font-weight: 800; letter-spacing: -1.5px; }
 
 .stat-done { color: var(--accent); }
 .stat-pending { color: var(--text-main); }
+
+.secondary-btn { 
+    background: var(--danger); 
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
 
 .input-section {
     background: #fff;
     padding: 1.2rem;
     border-radius: 10px;
     border: 2px solid var(--border);
-    margin:1.5rem 0;
+    margin-bottom: 1.5rem;
 }
 
 input[type="text"] {
@@ -84,28 +88,21 @@ input[type="text"] {
 
 input[type="text"]:focus { border-color: var(--accent); outline: none; }
 
-button {
-    font-family: inherit;
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.75rem;
-}
-
 ul { list-style: none; padding: 0; margin: 0; }
 
 li {
     background: #fff;
     margin-bottom: 8px;
-    padding: 12px 16px;
+    padding: 14px 16px;
     border-radius: 8px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border: 2px solid var(--border);
     cursor: grab;
 }
+
+li.dragging { opacity: 0.4; border-style: dashed; }
 
 li span { 
     flex-grow: 1; 
@@ -114,20 +111,17 @@ li span {
     text-align: left;
 }
 
-input[type="checkbox"], .delete-btn {
-    width: 22px; 
-    height: 22px;
-    flex-shrink: 0;
-}
-
+/* Размер чекбокса */
 input[type="checkbox"] {
     appearance: none;
+    width: 24px; 
+    height: 24px;
     border: 2px solid var(--border);
     border-radius: 5px;
     cursor: pointer;
     position: relative;
     background: #fff;
-    overflow: hidden;
+    flex-shrink: 0;
 }
 
 input[type="checkbox"]:checked { border-color: var(--accent); }
@@ -136,12 +130,13 @@ input[type="checkbox"]:checked::after {
     position: absolute;
     color: var(--accent);
     font-weight: 900;
-    font-size: 22px;
+    font-size: 24px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -55%);
 }
 
+/* ОГРОМНЫЙ И КРУТОЙ КРЕСТИК */
 .delete-btn {
     background: transparent;
     color: var(--text-muted);
@@ -150,15 +145,17 @@ input[type="checkbox"]:checked::after {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 32px; /* Увеличили саму кнопку */
+    height: 32px;
+    flex-shrink: 0;
     padding: 0;
-    margin-left: auto; /* Гарантирует прижатие вправо */
 }
 
 .delete-btn svg { 
-    width: 18px; 
-    height: 18px; 
-    stroke: currentColor; /* Использует цвет текста (text-muted) */
-    stroke-width: 2.5px; 
+    width: 32px; /* Увеличили иконку */
+    height: 32px; 
+    stroke-width: 3.5px; /* Очень жирные линии */
+    stroke: currentColor; 
 }
 
 .delete-btn:hover { color: var(--danger); }
@@ -168,6 +165,5 @@ input[type="checkbox"]:checked::after {
 
 @media (max-width: 600px) { 
     .header-top { flex-direction: column; gap: 10px; }
-    .stats-header { order: 2; }
-    .secondary-btn { order: 3; width: 100%; justify-content: center; }
+    .brand, .stats-header, .actions-header { flex: none; width: 100%; justify-content: center; }
 }
