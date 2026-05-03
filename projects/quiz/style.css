@@ -1,0 +1,50 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1a1a2e;
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; margin: 0; overflow: hidden; transition: 0.3s;
+}
+
+#quiz-container {
+    max-width: 550px; width: 95%; background: #ffffff;
+    border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    text-align: center; position: relative; z-index: 10;
+}
+
+#progress-container { width: 100%; height: 6px; background: #eee; }
+#progress-bar { width: 0%; height: 100%; background: #4834d4; transition: 0.4s; }
+
+.stats-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; }
+
+#combo-indicator {
+    color: #eb4d4b; font-weight: 900; font-size: 1.2em;
+    animation: bounce 0.5s infinite alternate; margin-bottom: 10px;
+}
+
+@keyframes bounce { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+#timer-container { position: relative; width: 45px; height: 45px; }
+.timer-svg { transform: rotate(-90deg); width: 45px; height: 45px; }
+.timer-bg { fill: none; stroke: #f1f2f6; stroke-width: 4; }
+.timer-line { fill: none; stroke: #686de0; stroke-width: 4; stroke-dasharray: 113.1; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear; }
+
+#quiz-content { padding: 10px 25px 30px; min-height: 350px; }
+#question { font-size: 1.3em; color: #130f40; margin-bottom: 20px; min-height: 60px; line-height: 1.4; }
+
+.answer-btn {
+    display: block; width: 100%; margin: 8px 0; padding: 14px;
+    border: 2px solid #dcdde1; border-radius: 12px; cursor: pointer; transition: 0.2s; background: #fff;
+}
+.answer-btn:hover:not(:disabled) { border-color: #686de0; background: #f5f6fa; transform: translateY(-2px); }
+
+.correct { background: #badc58 !important; border-color: #6ab04c !important; color: #1e3d1e; font-weight: bold; }
+.wrong { background: #ff7979 !important; border-color: #eb4d4b !important; color: #4d1e1e; }
+
+#explanation { background: #f0f2f5; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: left; font-size: 0.9em; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+#rocket { position: fixed; bottom: -120px; left: 10%; font-size: 80px; z-index: 100; pointer-events: none; transition: 0.3s; }
+.rocket-fly { display: block; animation: launch 2s ease-in forwards; }
+@keyframes launch { to { bottom: 110vh; left: 90%; transform: rotate(45deg); } }
+
+#next-btn, .restart-btn { margin-top: 20px; padding: 12px 30px; background: #686de0; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
