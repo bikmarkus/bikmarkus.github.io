@@ -2,47 +2,33 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cosmic Intelligence Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космический Квиз: 110 вопросов</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="stars"></div>
-    <div id="rocket-container"></div>
-    
     <div class="quiz-container">
-        <div id="start-screen">
-            <h1>Миссия: Космос</h1>
-            <p>Выберите длительность экспедиции:</p>
-            <select id="question-count">
-                <option value="15" selected>15 вопросов</option>
-                <option value="30">30 вопросов</option>
-                <option value="50">50 вопросов</option>
-                <option value="115">Все 115 вопросов</option>
-            </select>
-            <button class="main-btn" onclick="startQuiz()">ПОЕХАЛИ!</button>
+        <!-- Экран настройки -->
+        <div id="setup-screen">
+            <h1>Космический Квиз</h1>
+            <p>В нашей базе 110 вопросов. Сколько случайных вопросов вы хотите пройти?</p>
+            <input type="number" id="question-count" value="10" min="1" max="110">
+            <button onclick="startQuiz()">Начать игру</button>
         </div>
 
-        <div id="game-screen" style="display: none;">
-            <div class="header">
-                <div class="timer-box" id="timer-wrapper"><span id="timer">20</span></div>
-                <div id="question-number">Вопрос 1/15</div>
-            </div>
-            <div id="question-box">
-                <h2 id="question-text">Синхронизация данных...</h2>
-                <div id="options-container" class="options-grid"></div>
-            </div>
-            <div class="progress-container"><div id="progress-bar"></div></div>
+        <!-- Экран вопроса -->
+        <div id="quiz-screen" class="hidden">
+            <div class="progress">Вопрос <span id="current-num">1</span> из <span id="total-num">10</span></div>
+            <div id="question-text" class="question"></div>
+            <div id="options-container" class="options"></div>
+            <button id="next-btn" class="hidden" onclick="handleNext()">Следующий вопрос</button>
         </div>
 
-        <div id="results-screen" style="display: none;">
-            <h2>Экспедиция завершена</h2>
-            <div id="score-summary"></div>
-            <div class="stats-accordion" onclick="toggleStats()">
-                <span>Подробный отчет (нажмите, чтобы раскрыть)</span>
-                <div id="detailed-stats"></div>
-            </div>
-            <button class="main-btn" onclick="location.reload()">В НАЧАЛО</button>
+        <!-- Экран финала -->
+        <div id="result-screen" class="hidden">
+            <h2>Игра окончена!</h2>
+            <div id="score-text"></div>
+            <button onclick="location.reload()">Вернуться в начало</button>
         </div>
     </div>
     <script src="script.js"></script>
