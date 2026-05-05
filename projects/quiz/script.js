@@ -1,5 +1,5 @@
 const fullDatabase = [
-    { q: "Как назывался первый в мире искусственный спутник Земли, запущенный СССР 4 октября 1957 года?", a: ["Спутник-1 (ПС-1)", "Восток-1", "Союз", "Салют"], c: 0 },
+    { q: "Как назывался первый в истории искусственный спутник Земли, запущенный СССР 4 октября 1957 года?", a: ["Спутник-1 (ПС-1)", "Восток-1", "Союз", "Салют"], c: 0 },
     { q: "В каком году был запущен первый искусственный спутник Земли?", a: ["1957", "1961", "1955", "1965"], c: 0 },
     { q: "Кто был главным конструктором первых советских ракетно-космических систем?", a: ["Сергей Королев", "Валентин Глушко", "Мстислав Келдыш", "Николай Пилюгин"], c: 0 },
     { q: "Как назывался космический корабль, на котором Юрий Гагарин совершил полет?", a: ["Восток-1", "Восход-1", "Союз-1", "Мир"], c: 0 },
@@ -93,7 +93,7 @@ const fullDatabase = [
     { q: "Ближайшая к Земле точка орбиты?", a: ["Перигей", "Апогей", "Зенит", "Надир"], c: 0 },
     { q: "Максимально удаленная от Земли точка?", a: ["Апогей", "Перигей", "Перигелий", "Афелий"], c: 0 },
     { q: "Граница черной дыры, за которую нельзя выйти?", a: ["Горизонт событий", "Сфера Шварцшильда", "Кольцо", "Предел Роша"], c: 0 },
-    { q: "Инструмент для изучения состава звезд по спектру?", a: ["Спектроскоп", "Телескоп", "Радиолокатор", "Фотометр"], c: 0 },
+    { q: "Инструмент для изучения состава звезд по спектру?", a: ["Спектроскоп", "Тилескоп", "Радиолокатор", "Фотометр"], c: 0 },
     { q: "Объект, только выбрасывающий вещество?", a: ["Белая дыра", "Квазар", "Пульсар", "Нейтронная звезда"], c: 0 },
     { q: "Плотное ядро из нейтронов после сверхновой?", a: ["Нейтронная звезда", "Белый карлик", "Красный гигант", "Черная дыра"], c: 0 },
     { q: "Луна закрывает Солнце?", a: ["Солнечное затмение", "Лунное затмение", "Прохождение", "Параллакс"], c: 0 },
@@ -114,9 +114,10 @@ let timeLeft = 15;
 
 function startQuiz() {
     const select = document.getElementById('question-count');
-    let count = parseInt(select.value);
+    // Исправлено: теперь берем значение из select
+    let count = parseInt(select.value); 
     
-    // Перемешивание и выборка
+    // Перемешивание и выборка заданного количества
     const shuffled = [...fullDatabase].sort(() => 0.5 - Math.random());
     quizData = shuffled.slice(0, count);
     
@@ -132,7 +133,7 @@ function startQuiz() {
 function showQuestion() {
     clearInterval(timerInterval);
     timeLeft = 15;
-    document.getElementById('timer').innerText = `Осталось: ${timeLeft}с`;
+    document.getElementById('timer').innerText = `${timeLeft}с`;
     
     const q = quizData[currentQuestionIndex];
     document.getElementById('current-num').innerText = currentQuestionIndex + 1;
@@ -141,7 +142,7 @@ function showQuestion() {
     const container = document.getElementById('options-container');
     container.innerHTML = '';
     
-    // Создаем массив вариантов и перемешиваем его
+    // Перемешиваем варианты
     const options = q.a.map((text, index) => ({ text, isCorrect: index === 0 }));
     options.sort(() => Math.random() - 0.5);
 
@@ -157,7 +158,7 @@ function showQuestion() {
     
     timerInterval = setInterval(() => {
         timeLeft--;
-        document.getElementById('timer').innerText = `Осталось: ${timeLeft}с`;
+        document.getElementById('timer').innerText = `${timeLeft}с`;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             handleTimeOut();
@@ -209,6 +210,6 @@ function showResult() {
     const percent = Math.round((score/quizData.length)*100);
     document.getElementById('score-text').innerHTML = `
         <p>Ваш результат: <strong>${score} из ${quizData.length}</strong></p>
-        <p style="color: #58a6ff; font-size: 2.5rem; margin: 20px 0;">${percent}%</p>
+        <p style="color: #58a6ff; font-size: 2.5rem; margin: 10px 0;">${percent}%</p>
     `;
 }
