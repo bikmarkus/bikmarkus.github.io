@@ -8,10 +8,9 @@
 </head>
 <body>
     <div class="quiz-container">
-        <!-- Экран настройки -->
         <div id="setup-screen">
             <h1>Космический Квиз</h1>
-            <p>Выберите количество вопросов для игры:</p>
+            <p>Выберите количество вопросов:</p>
             <select id="question-count">
                 <option value="10">10 вопросов</option>
                 <option value="20">20 вопросов</option>
@@ -19,18 +18,21 @@
                 <option value="110">Вся база (110)</option>
             </select>
             <br>
-            <button onclick="startQuiz()">Начать путешествие</button>
+            <button onclick="startQuiz()">Поехали!</button>
         </div>
 
-        <!-- Экран вопроса -->
         <div id="quiz-screen" class="hidden">
-            <div class="progress">Вопрос <span id="current-num">1</span> из <span id="total-num">10</span></div>
+            <div class="header-info">
+                <div class="progress">Вопрос <span id="current-num">1</span> из <span id="total-num">10</span></div>
+                <div id="timer">Осталось: 15с</div>
+            </div>
             <div id="question-text" class="question"></div>
             <div id="options-container" class="options"></div>
-            <button id="next-btn" class="hidden" onclick="handleNext()">Следующий вопрос →</button>
+            <div class="button-area">
+                <button id="next-btn" class="hidden" onclick="handleNext()">Следующий вопрос →</button>
+            </div>
         </div>
 
-        <!-- Экран финала -->
         <div id="result-screen" class="hidden">
             <h2>Миссия завершена!</h2>
             <div id="score-text"></div>
