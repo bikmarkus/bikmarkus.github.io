@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Космический Квиз</title>
+    <title>Космический Квиз: 110 вопросов</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="quiz-container">
+        <!-- Экран настройки -->
         <div id="setup-screen">
             <h1>Космический Квиз</h1>
-            <p>Выберите количество вопросов:</p>
+            <p>Выберите количество вопросов для прохождения:</p>
             <select id="question-count">
                 <option value="10">10 вопросов</option>
                 <option value="20">20 вопросов</option>
@@ -21,6 +22,7 @@
             <button onclick="startQuiz()">Поехали!</button>
         </div>
 
+        <!-- Экран вопроса -->
         <div id="quiz-screen" class="hidden">
             <div class="header-info">
                 <div class="progress">Вопрос <span id="current-num">1</span> из <span id="total-num">10</span></div>
@@ -33,6 +35,7 @@
             </div>
         </div>
 
+        <!-- Экран финала -->
         <div id="result-screen" class="hidden">
             <h2>Миссия завершена!</h2>
             <div id="score-text"></div>
