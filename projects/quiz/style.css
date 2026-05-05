@@ -1,7 +1,14 @@
+:root {
+    --accent: #00d4ff;
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
 body {
-    background: #0b0d17;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,72 +17,97 @@ body {
     overflow: hidden;
 }
 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .quiz-container {
-    background: #1c1f2f;
-    padding: 30px;
-    border-radius: 15px;
-    width: 500px;
-    box-shadow: 0 0 20px rgba(0,212,255,0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 550px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-#timer {
-    font-size: 24px;
-    color: #ff4757;
+.timer-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#question-text {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    min-height: 80px;
 }
 
 button {
     display: block;
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background: #2f3542;
+    padding: 15px 20px;
+    margin: 12px 0;
+    background: rgba(255, 255, 255, 0.1);
     color: white;
-    border: 2px solid #3e445b;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.2s ease;
+    font-size: 1rem;
     text-align: left;
 }
 
 button:hover {
-    background: #535c68;
+    background: var(--accent);
+    color: #0f3460;
+    transform: translateX(5px);
 }
 
-.progress-wrapper {
+.progress-container {
     width: 100%;
-    height: 10px;
-    background: #2f3542;
-    border-radius: 5px;
-    margin-top: 25px;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    margin-top: 30px;
+    overflow: hidden;
 }
 
 #progress-bar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #00d2ff, #3a7bd5);
-    border-radius: 5px;
-    transition: 0.4s;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Анимация ракеты */
 .rocket {
     position: absolute;
-    font-size: 50px;
-    bottom: -100px;
+    font-size: 80px;
+    bottom: -150px;
     left: 50%;
     transform: translateX(-50%);
-    animation: fly 3s ease-in forwards;
-    z-index: 100;
+    animation: flyUp 4s ease-in forwards;
+    z-index: 1000;
 }
 
-@keyframes fly {
-    0% { bottom: -100px; transform: translateX(-50%) rotate(0deg); }
-    100% { bottom: 120%; transform: translateX(-50%) rotate(0deg); }
+@keyframes flyUp {
+    0% { bottom: -150px; }
+    100% { bottom: 150%; }
 }
