@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Космическая Одиссея: 100 вопросов</title>
+    <title>Космическая Одиссея: Финальный отчет</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,15 +14,14 @@
         <!-- Стартовый экран -->
         <div id="start-screen">
             <h1>Космическая Одиссея</h1>
-            <p>Выберите количество вопросов в миссии:</p>
+            <p>Выберите масштаб миссии:</p>
             <select id="question-count">
-                <option value="15" selected>15 вопросов (Стандарт)</option>
-                <option value="25">25 вопросов</option>
-                <option value="35">35 вопросов</option>
-                <option value="45">45 вопросов</option>
-                <option value="100">100 вопросов (Герой)</option>
+                <option value="15" selected>15 вопросов</option>
+                <option value="30">30 вопросов</option>
+                <option value="50">50 вопросов</option>
+                <option value="115">Полная база (115 вопросов)</option>
             </select>
-            <button id="start-btn" onclick="startQuiz()">ПОЕХАЛИ!</button>
+            <button class="main-btn" onclick="startQuiz()">ПОЕХАЛИ!</button>
         </div>
 
         <!-- Игровой экран -->
@@ -33,15 +32,21 @@
                 </div>
                 <div id="question-number">Вопрос 1/15</div>
             </div>
-
             <div id="question-box">
-                <h2 id="question-text">Инициализация бортовых систем...</h2>
+                <h2 id="question-text">Загрузка данных...</h2>
                 <div id="options-container" class="options-grid"></div>
             </div>
-
             <div class="progress-container">
                 <div id="progress-bar"></div>
             </div>
+        </div>
+
+        <!-- Экран результатов -->
+        <div id="results-screen" style="display: none;">
+            <h2>Миссия завершена!</h2>
+            <div id="score-summary"></div>
+            <div id="detailed-stats"></div>
+            <button class="main-btn" onclick="location.reload()">В НАЧАЛО</button>
         </div>
     </div>
 
