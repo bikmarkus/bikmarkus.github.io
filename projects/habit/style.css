@@ -102,17 +102,21 @@ button {
     width: 32px; 
     height: 32px; 
     display: flex; 
+    font-size: 23px; 
+    padding-bottom: 8px;
+    color:#888;
     align-items: center; 
     justify-content: center; 
 }
 .btn-adjust:hover { background: #e2e2e2; }
 
 .btn-delete { 
+    padding-bottom: 8px;
     background: #fff0f0; 
     color: #dc3545; 
     width: 32px; 
     height: 32px; 
-    font-size: 22px; 
+    font-size: 23px; 
     display: flex; 
     align-items: center; 
     justify-content: center;
