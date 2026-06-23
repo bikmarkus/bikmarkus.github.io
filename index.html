@@ -1,70 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A part of something</title>
-    <link rel="shortcut icon" href="favicon.png" type="image/png">
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --card-bg: #cccccc;
-            --text-main: #1a1a1a;
-            --text-muted: #2d2d2d;
-            --accent-red: #e63946;
-            --accent-hover: #ff4d5a;
-            --quote-bg: #fff5f5;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
-        h1,
-        h2,
-        h3 {
-            color: var(--accent-red);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        li {
-            border-left: 3px solid var(--accent-red);
-            padding-left: 15px;
-            margin-bottom: 10px;
-            list-style: none;
-            font-weight: bold;
-        }
-        a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: var(--accent-hover);
-            text-decoration: underline;
-        }
-        blockquote{margin:0;padding:30px;background-color:var(--quote-bg);border-left:8px solid var(--accent-red);border-radius:4px;}
-        blockquote p{color:var(--accent-red);font-size:1.4em;font-style:italic;font-weight:700;line-height:1.2;margin:0;}
-        blockquote cite{display:block;margin-top:15px;color:var(--text-main);font-size:0.9em;font-style:normal;text-transform:uppercase;letter-spacing:2px;}
-        blockquote p::before{content:"“";font-size:3em;color:var(--accent-red);opacity:0.3;position:absolute;margin-left:-35px;margin-top:-20px;}
-    </style>
-</head>
-<body>
-    <header>
-        <blockquote>
-            <p>Talk is cheap. Show me the code.<cite> - Linus Torvalds</cite></p>
-        </blockquote>
-    </header>
-    <main>
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="unagi/">Total Recall Rating</a></li>
-            <li><a href="projects/todo/">TodoList</a></li>
-            <li><a href="projects/matrix/">Eisenhower Matrix</a></li>
-            <li><a href="projects/winup/">Pop up Window</a></li>
-            <li><a href="projects/habit/">Habit Tracker</a></li>
-            <li><a href="projects/cbt/">CBT Diary</a></li>
-            <li><a href="projects/quiz/">SpaceQUIZ</a></li>
-        </ul>
-    </main>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>A part of something</title>
+        <link rel="shortcut icon" href="favicon.png" type="image/png">
+        <style>
+            :root{--bg-color:#ffffff;--card-bg:#cccccc;--text-main:#1a1a1a;--text-muted:#2d2d2d;--accent-red:#e63946;--accent-hover:#ff4d5a;--quote-bg:#fff5f5;}
+            body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;}
+            h1,h2,h3{color:var(--accent-red);text-transform:uppercase;letter-spacing:1px;}
+            li{border-left:3px solid var(--accent-red);padding-left:15px;margin-bottom:10px;list-style:none;font-weight:bold;}
+            a{color:var(--text-main);text-decoration:none;font-weight:bold;}
+            a:hover{color:var(--accent-hover);text-decoration:underline;}
+            blockquote{margin:0;padding:30px;background-color:var(--quote-bg);border-left:8px solid var(--accent-red);border-radius:4px;}
+            blockquote p{color:var(--accent-red);font-size:1.4em;font-style:italic;font-weight:700;line-height:1.2;margin:0;}
+            blockquote cite{display:block;margin-top:15px;color:var(--text-main);font-size:0.9em;font-style:normal;text-transform:uppercase;letter-spacing:2px;}
+            blockquote p::before{content:"“";font-size:3em;color:var(--accent-red);opacity:0.3;position:absolute;margin-left:-35px;margin-top:-20px;}
+        </style>
+    </head>
+    <body>
+        <header>
+            <blockquote>
+                <p>Talk is cheap. Show me the code.<cite> - Linus Torvalds</cite></p>
+            </blockquote>
+        </header>
+        <main>
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="unagi/">Total Recall Rating</a></li>
+                <li><a href="projects/todo/">TodoList</a></li>
+                <li><a href="projects/matrix/">Eisenhower Matrix</a></li>
+                <li><a href="projects/winup/">Pop up Window</a></li>
+                <li><a href="projects/habit/">Habit Tracker</a></li>
+                <li><a href="projects/cbt/">CBT Diary</a></li>
+                <li><a href="projects/quiz/">SpaceQUIZ</a></li>
+            </ul>
+        </main>
+    </body>
 </html>
