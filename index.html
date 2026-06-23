@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +14,11 @@
             --accent-red: #e63946;
             --accent-hover: #ff4d5a;
             --quote-bg: #fff5f5;
-            /* Очень светлый красный оттенок для фона цитаты */
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
         }
-
         h1,
         h2,
         h3 {
@@ -30,7 +26,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         li {
             border-left: 3px solid var(--accent-red);
             padding-left: 15px;
@@ -38,58 +33,21 @@
             list-style: none;
             font-weight: bold;
         }
-
-
         a {
             color: var(--text-main);
             text-decoration: none;
             font-weight: bold;
         }
-
         a:hover {
             color: var(--accent-hover);
             text-decoration: underline;
         }
-
-        blockquote {
-            margin: 0;
-            padding: 30px;
-            background-color: var(--quote-bg);
-            border-left: 8px solid var(--accent-red);
-            border-radius: 4px;
-        }
-
-        blockquote p {
-            color: var(--accent-red);
-            font-size: 1.4em;
-            font-style: italic;
-            font-weight: 700;
-            line-height: 1.2;
-            margin: 0;
-        }
-
-        blockquote cite {
-            display: block;
-            margin-top: 15px;
-            color: var(--text-main);
-            font-size: 0.9em;
-            font-style: normal;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        blockquote p::before {
-            content: "“";
-            font-size: 3em;
-            color: var(--accent-red);
-            opacity: 0.3;
-            position: absolute;
-            margin-left: -35px;
-            margin-top: -20px;
-        }
+        blockquote{margin:0;padding:30px;background-color:var(--quote-bg);border-left:8px solid var(--accent-red);border-radius:4px;}
+        blockquote p{color:var(--accent-red);font-size:1.4em;font-style:italic;font-weight:700;line-height:1.2;margin:0;}
+        blockquote cite{display:block;margin-top:15px;color:var(--text-main);font-size:0.9em;font-style:normal;text-transform:uppercase;letter-spacing:2px;}
+        blockquote p::before{content:"“";font-size:3em;color:var(--accent-red);opacity:0.3;position:absolute;margin-left:-35px;margin-top:-20px;}
     </style>
 </head>
-
 <body>
     <header>
         <blockquote>
@@ -107,19 +65,6 @@
             <li><a href="projects/cbt/">CBT Diary</a></li>
             <li><a href="projects/quiz/">SpaceQUIZ</a></li>
         </ul>
-        <h2>Test assignments</h2>
-        <ul>
-            <li><a href="test/house">HTML/CSS</a></li>
-            <li><a href="test/copob">Javascript</a></li>
-            <li><a href="test/skobki">Algorithms</a></li>
-        </ul>
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Javascript</li>
-        </ul>
     </main>
 </body>
-
 </html>
